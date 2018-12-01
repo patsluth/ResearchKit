@@ -78,6 +78,7 @@
 #import <ResearchKit/ORKEnvironmentSPLMeterResult.h>
 #import <ResearchKit/ORKResultPredicate.h>
 
+#import <ResearchKit/ORKNavigationContainerView.h>
 #import <ResearchKit/ORKTextButton.h>
 #import <ResearchKit/ORKBorderedButton.h>
 #import <ResearchKit/ORKContinueButton.h>
