@@ -270,18 +270,32 @@ static void *_ORKViewControllerToolbarObserverContext = &_ORKViewControllerToolb
 
 @synthesize taskRunUUID=_taskRunUUID;
 
+static BOOL _disableNavigationBarUpdates = true;
+
 + (void)initialize {
     if (self == [ORKTaskViewController class]) {
-        
-        [[UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[ORKTaskViewController class]]] setTranslucent:NO];
-        if ([[UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[ORKTaskViewController class]]] barTintColor] == nil) {
-            [[UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[ORKTaskViewController class]]] setBarTintColor:ORKColor(ORKToolBarTintColorKey)];
-        }
-        
-        if ([[UIToolbar appearanceWhenContainedInInstancesOfClasses:@[[ORKTaskViewController class]]] barTintColor] == nil) {
-            [[UIToolbar appearanceWhenContainedInInstancesOfClasses:@[[ORKTaskViewController class]]] setBarTintColor:ORKColor(ORKToolBarTintColorKey)];
-        }
-    }
+		
+		ORKTaskViewController.disableNavigationBarUpdates = true;
+		
+	}
+}
+
++ (void)setDisableNavigationBarUpdates:(BOOL)disableNavigationBarUpdates
+{
+	ORKTaskViewController.disableNavigationBarUpdates = disableNavigationBarUpdates;
+	
+	if (!ORKTaskViewController.disableNavigationBarUpdates) {
+		
+		[[UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[ORKTaskViewController class]]] setTranslucent:NO];
+		if ([[UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[ORKTaskViewController class]]] barTintColor] == nil) {
+			[[UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[ORKTaskViewController class]]] setBarTintColor:ORKColor(ORKToolBarTintColorKey)];
+		}
+		
+		if ([[UIToolbar appearanceWhenContainedInInstancesOfClasses:@[[ORKTaskViewController class]]] barTintColor] == nil) {
+			[[UIToolbar appearanceWhenContainedInInstancesOfClasses:@[[ORKTaskViewController class]]] setBarTintColor:ORKColor(ORKToolBarTintColorKey)];
+		}
+
+	}
 }
 
 static NSString *const _PageViewControllerRestorationKey = @"pageViewController";
@@ -1114,18 +1128,20 @@ static NSString *const _ChildNavigationControllerRestorationKey = @"childNavigat
         if (!ORKNeedWideScreenDesign(self.view)) {
             _pageViewController.navigationItem.title = viewController.navigationItem.title;
             _pageViewController.navigationItem.titleView = viewController.navigationItem.titleView;
-            CGFloat maxWidth = UIScreen.mainScreen.bounds.size.width - 40;
-            CGFloat fontSize = [UIFont preferredFontForTextStyle:UIFontTextStyleLargeTitle].pointSize;
-            CGFloat width = [_pageViewController.navigationItem.title sizeWithAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontSize]}].width;
-            while (width > maxWidth) {
-                fontSize -= 1;
-                // adhering to iPhone Typography Guidelines
-                if (fontSize <= 17) {
-                    break;
-                }
-                width = [_pageViewController.navigationItem.title sizeWithAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontSize]}].width;
-            }
-            _pageViewController.navigationController.navigationBar.largeTitleTextAttributes = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:fontSize]};
+			if (!ORKTaskViewController.disableNavigationBarUpdates) {
+				CGFloat maxWidth = UIScreen.mainScreen.bounds.size.width - 40;
+				CGFloat fontSize = [UIFont preferredFontForTextStyle:UIFontTextStyleLargeTitle].pointSize;
+				CGFloat width = [_pageViewController.navigationItem.title sizeWithAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontSize]}].width;
+				while (width > maxWidth) {
+					fontSize -= 1;
+					// adhering to iPhone Typography Guidelines
+					if (fontSize <= 17) {
+						break;
+					}
+					width = [_pageViewController.navigationItem.title sizeWithAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontSize]}].width;
+				}
+				_pageViewController.navigationController.navigationBar.largeTitleTextAttributes = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:fontSize]};
+			}
         }
         if (![self shouldDisplayProgressLabel]) {
             _pageViewController.navigationItem.rightBarButtonItem = viewController.navigationItem.rightBarButtonItem;

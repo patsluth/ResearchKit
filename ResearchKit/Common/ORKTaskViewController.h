@@ -488,6 +488,11 @@ ORK_CLASS_AVAILABLE
 @property (nonatomic, readonly) UINavigationBar *navigationBar;
 
 /**
+ Disable navigation bar updates so themes can be applied easily
+ */
+@property (class, nonatomic, assign) BOOL disableNavigationBarUpdates;
+
+/**
  A Boolean value indicating whether the task view controller can be dismissed directly, without showing the "End Task" action sheet, when
  a user taps the "Cancel" button.
  
