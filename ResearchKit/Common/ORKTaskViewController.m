@@ -280,9 +280,14 @@ static BOOL _disableNavigationBarUpdates = true;
 	}
 }
 
++ (BOOL)disableNavigationBarUpdates
+{
+	return _disableNavigationBarUpdates;
+}
+
 + (void)setDisableNavigationBarUpdates:(BOOL)disableNavigationBarUpdates
 {
-	ORKTaskViewController.disableNavigationBarUpdates = disableNavigationBarUpdates;
+	_disableNavigationBarUpdates = disableNavigationBarUpdates;
 	
 	if (!ORKTaskViewController.disableNavigationBarUpdates) {
 		
