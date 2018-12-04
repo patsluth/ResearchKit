@@ -69,7 +69,9 @@ class RootViewController: UIViewController, OnboardingManagerDelegate {
         
         graphNavigationController.view.backgroundColor = Colors.tableViewBackgroundColor.color
         graphNavigationController.navigationBar.prefersLargeTitles = true
-        graphNavigationController.navigationBar.barTintColor = Colors.appTintColor.color
+		if (!ORKTaskViewController.disableNavigationBarUpdates) {
+        	graphNavigationController.navigationBar.barTintColor = Colors.appTintColor.color
+		}
         graphNavigationController.tabBarItem.title = NSLocalizedString("Graphs", comment: "")
         graphNavigationController.tabBarItem.image = UIImage.init(named: "graphTab")
         graphNavigationController.navigationBar.titleTextAttributes = textAttributes

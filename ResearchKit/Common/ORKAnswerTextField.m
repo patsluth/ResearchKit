@@ -72,7 +72,9 @@
                                    initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                    target:self action:@selector(keyboardAccessoryViewDoneButtonPressed)];
     accessoryViewWithDoneButton.items = @[flexibleSpace, doneButton];
+	if (!ORKTaskViewController.disableNavigationBarUpdates) {
     [accessoryViewWithDoneButton setBarTintColor:ORKColor(ORKBackgroundColorKey)];
+	}
     self.inputAccessoryView = accessoryViewWithDoneButton;
 }
 

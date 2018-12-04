@@ -85,9 +85,11 @@ static const CGFloat iPadStepTitleLabelFontSize = 50.0;
                        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]] arrayByAddingObjectsFromArray:self.toolbarItems];
     
     self.view.backgroundColor = ORKColor(ORKConsentBackgroundColorKey);
+	if (!ORKTaskViewController.disableNavigationBarUpdates) {
     if (self.navigationController.navigationBar) {
         [self.navigationController.navigationBar setBarTintColor:self.view.backgroundColor];
     }
+	}
     
     WKWebViewConfiguration *webViewConfiguration = [WKWebViewConfiguration new];
     _webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:webViewConfiguration];

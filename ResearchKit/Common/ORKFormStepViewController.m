@@ -522,7 +522,7 @@
         
         if ([self formStep].useCardView) {
             _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-            
+            if (!ORKTaskViewController.disableNavigationBarUpdates) {
             if (ORKNeedWideScreenDesign(self.view)) {
                 [_tableView setBackgroundColor:[UIColor clearColor]];
                 [self.taskViewController.navigationBar setBarTintColor:ORKColor(ORKBackgroundColorKey)];
@@ -533,6 +533,7 @@
                 [self.taskViewController.navigationBar setBarTintColor:[_tableView backgroundColor]];
                 [self.view setBackgroundColor:[_tableView backgroundColor]];
             }
+			}
         }
         _headerView = _tableContainer.stepHeaderView;
         _headerView.captionLabel.useSurveyMode = [[self formStep] useSurveyMode];

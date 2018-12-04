@@ -287,10 +287,13 @@
     
     [self addChildViewController:_pageViewController];
     [_pageViewController didMoveToParentViewController:self];
-    
+	
+	if (!ORKTaskViewController.disableNavigationBarUpdates) {
     if (self.taskViewController.navigationBar) {
         [self.taskViewController.navigationBar setBarTintColor:self.view.backgroundColor];
     }
+	}
+	
     _animationView.userInteractionEnabled = NO;
     
     [self updatePageIndex];

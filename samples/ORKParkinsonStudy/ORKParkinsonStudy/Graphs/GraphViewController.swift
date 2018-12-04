@@ -46,7 +46,9 @@ class GraphViewController: UITableViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+		if (!ORKTaskViewController.disableNavigationBarUpdates) {
         self.navigationController?.navigationBar.barTintColor = Colors.appTintColor.color
+		}
     }
     
     func createGraph() {
