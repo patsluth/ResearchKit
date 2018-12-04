@@ -270,27 +270,9 @@ static void *_ORKViewControllerToolbarObserverContext = &_ORKViewControllerToolb
 
 @synthesize taskRunUUID=_taskRunUUID;
 
-static BOOL _disableNavigationBarUpdates = true;
-
 + (void)initialize {
     if (self == [ORKTaskViewController class]) {
-		
-		ORKTaskViewController.disableNavigationBarUpdates = true;
-		
-	}
-}
-
-+ (BOOL)disableNavigationBarUpdates
-{
-	return _disableNavigationBarUpdates;
-}
-
-+ (void)setDisableNavigationBarUpdates:(BOOL)disableNavigationBarUpdates
-{
-	_disableNavigationBarUpdates = disableNavigationBarUpdates;
-	
-	if (!ORKTaskViewController.disableNavigationBarUpdates) {
-		
+#ifndef THEMING_ENABLED
 		[[UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[ORKTaskViewController class]]] setTranslucent:NO];
 		if ([[UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[ORKTaskViewController class]]] barTintColor] == nil) {
 			[[UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[[ORKTaskViewController class]]] setBarTintColor:ORKColor(ORKToolBarTintColorKey)];
@@ -299,7 +281,7 @@ static BOOL _disableNavigationBarUpdates = true;
 		if ([[UIToolbar appearanceWhenContainedInInstancesOfClasses:@[[ORKTaskViewController class]]] barTintColor] == nil) {
 			[[UIToolbar appearanceWhenContainedInInstancesOfClasses:@[[ORKTaskViewController class]]] setBarTintColor:ORKColor(ORKToolBarTintColorKey)];
 		}
-
+#endif
 	}
 }
 
@@ -362,9 +344,9 @@ static NSString *const _ChildNavigationControllerRestorationKey = @"childNavigat
     
     self.taskRunUUID = taskRunUUID;
 	
-	if (!ORKTaskViewController.disableNavigationBarUpdates) {
+	#ifndef THEMING_ENABLED
     [self.childNavigationController.navigationBar setShadowImage:[UIImage new]];
-	}
+	#endif
     self.hairline = [self findHairlineViewUnder:self.childNavigationController.navigationBar];
     self.hairline.alpha = 0.0f;
     self.childNavigationController.toolbar.clipsToBounds = YES;
@@ -1135,7 +1117,7 @@ static NSString *const _ChildNavigationControllerRestorationKey = @"childNavigat
         if (!ORKNeedWideScreenDesign(self.view)) {
             _pageViewController.navigationItem.title = viewController.navigationItem.title;
             _pageViewController.navigationItem.titleView = viewController.navigationItem.titleView;
-			if (!ORKTaskViewController.disableNavigationBarUpdates) {
+			#ifndef THEMING_ENABLED
 				CGFloat maxWidth = UIScreen.mainScreen.bounds.size.width - 40;
 				CGFloat fontSize = [UIFont preferredFontForTextStyle:UIFontTextStyleLargeTitle].pointSize;
 				CGFloat width = [_pageViewController.navigationItem.title sizeWithAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontSize]}].width;
@@ -1148,7 +1130,7 @@ static NSString *const _ChildNavigationControllerRestorationKey = @"childNavigat
 					width = [_pageViewController.navigationItem.title sizeWithAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontSize]}].width;
 				}
 				_pageViewController.navigationController.navigationBar.largeTitleTextAttributes = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:fontSize]};
-			}
+			#endif
         }
         if (![self shouldDisplayProgressLabel]) {
             _pageViewController.navigationItem.rightBarButtonItem = viewController.navigationItem.rightBarButtonItem;

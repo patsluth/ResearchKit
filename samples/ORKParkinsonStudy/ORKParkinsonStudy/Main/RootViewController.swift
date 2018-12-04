@@ -57,11 +57,11 @@ class RootViewController: UIViewController, OnboardingManagerDelegate {
         
         let taskListViewController = TaskListViewController()
         let taskListNavController = UINavigationController(rootViewController: taskListViewController)
-		if (!ORKTaskViewController.disableNavigationBarUpdates) {
+		#ifndef THEMING_ENABLED
         taskListNavController.navigationBar.shadowImage = UIImage()
         taskListNavController.navigationBar.setBackgroundImage(UIImage(), for: .default)
 			taskListNavController.navigationBar.titleTextAttributes = textAttributes
-		}
+		#endif
         taskListNavController.tabBarItem.title = NSLocalizedString("Tasks", comment: "")
         taskListNavController.tabBarItem.image = UIImage.init(named: "surveyTab")
         
@@ -71,22 +71,22 @@ class RootViewController: UIViewController, OnboardingManagerDelegate {
         
         graphNavigationController.view.backgroundColor = Colors.tableViewBackgroundColor.color
         graphNavigationController.navigationBar.prefersLargeTitles = true
-		if (!ORKTaskViewController.disableNavigationBarUpdates) {
+		#ifndef THEMING_ENABLED
         	graphNavigationController.navigationBar.barTintColor = Colors.appTintColor.color
-		}
+		#endif
         graphNavigationController.tabBarItem.title = NSLocalizedString("Graphs", comment: "")
         graphNavigationController.tabBarItem.image = UIImage.init(named: "graphTab")
-		if (!ORKTaskViewController.disableNavigationBarUpdates) {
+		#ifndef THEMING_ENABLED
         graphNavigationController.navigationBar.titleTextAttributes = textAttributes
         graphNavigationController.navigationBar.largeTitleTextAttributes = textAttributes
-		}
+		#endif
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [taskListNavController, graphNavigationController]
-		if (!ORKTaskViewController.disableNavigationBarUpdates) {
+		#ifndef THEMING_ENABLED
         tabBarController.tabBar.barTintColor = Colors.tableViewCellBackgroundColor.color
         tabBarController.tabBar.tintColor = Colors.dyskinesiaSymptomGraphColor.color
-		}
+		#endif
         self.present(tabBarController, animated: true, completion: nil)
     }
 }

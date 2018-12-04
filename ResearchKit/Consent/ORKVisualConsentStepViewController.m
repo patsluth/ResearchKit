@@ -288,13 +288,11 @@
     [self addChildViewController:_pageViewController];
     [_pageViewController didMoveToParentViewController:self];
 	
-	if (!ORKTaskViewController.disableNavigationBarUpdates) {
+	#ifndef THEMING_ENABLED
     if (self.taskViewController.navigationBar) {
-		if (!ORKTaskViewController.disableNavigationBarUpdates) {
         [self.taskViewController.navigationBar setBarTintColor:self.view.backgroundColor];
-		}
     }
-	}
+#endif
 	
     _animationView.userInteractionEnabled = NO;
     

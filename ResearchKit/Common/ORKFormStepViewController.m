@@ -522,18 +522,20 @@
         
         if ([self formStep].useCardView) {
             _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-            if (!ORKTaskViewController.disableNavigationBarUpdates) {
             if (ORKNeedWideScreenDesign(self.view)) {
                 [_tableView setBackgroundColor:[UIColor clearColor]];
+				#ifndef THEMING_ENABLED
                 [self.taskViewController.navigationBar setBarTintColor:ORKColor(ORKBackgroundColorKey)];
+				#endif
                 [self.view setBackgroundColor:ORKColor(ORKBackgroundColorKey)];
             }
             else {
                 [_tableView setBackgroundColor:ORKColor(ORKBackgroundColorKey)];
+				#ifndef THEMING_ENABLED
                 [self.taskViewController.navigationBar setBarTintColor:[_tableView backgroundColor]];
+				#endif
                 [self.view setBackgroundColor:[_tableView backgroundColor]];
             }
-			}
         }
         _headerView = _tableContainer.stepHeaderView;
         _headerView.captionLabel.useSurveyMode = [[self formStep] useSurveyMode];

@@ -182,9 +182,9 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
 			if (self.questionStep.useCardView) {
 				_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 				[_tableView setBackgroundColor:ORKColor(ORKBackgroundColorKey)];
-				if (!ORKTaskViewController.disableNavigationBarUpdates) {
+				#ifndef THEMING_ENABLED
 					[self.taskViewController.navigationBar setBarTintColor:[_tableView backgroundColor]];
-				}
+				#endif
 				[self.view setBackgroundColor:[_tableView backgroundColor]];
 			}
 			else {
@@ -233,10 +233,10 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
 				_cellHolderView.answer = [self answer];
 				_cellHolderView.userInteractionEnabled = !self.readOnlyMode;
 				if (self.questionStep.useCardView) {
-					if (!ORKTaskViewController.disableNavigationBarUpdates) {
 					[_questionView setBackgroundColor:ORKColor(ORKBackgroundColorKey)];
+					#ifndef THEMING_ENABLED
 					[self.taskViewController.navigationBar setBarTintColor:[_questionView backgroundColor]];
-					}
+					#endif
 					[self.view setBackgroundColor:[_questionView backgroundColor]];
 					[_cellHolderView useCardViewWithTitle:self.questionStep.question];
 				}

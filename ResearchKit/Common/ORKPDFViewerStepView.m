@@ -365,9 +365,9 @@ const CGFloat PDFhideViewAnimationDuration = 0.5;
                                   constant:PDFSearchBarHeight].active = YES;
     _searchBar.hidden = YES;
     _searchBar.delegate = self;
-	if (!ORKTaskViewController.disableNavigationBarUpdates) {
+	#ifndef THEMING_ENABLED
     _searchBar.barTintColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.3];
-	}
+	#endif
     _searchBar.translatesAutoresizingMaskIntoConstraints = NO;
     [_parentStackView insertArrangedSubview:_searchBar atIndex:0];
 }
