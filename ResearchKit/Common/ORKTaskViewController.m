@@ -1115,9 +1115,9 @@ static NSString *const _ChildNavigationControllerRestorationKey = @"childNavigat
 		_pageViewController.toolbarItems = viewController.toolbarItems;
 		_pageViewController.navigationItem.leftBarButtonItem = viewController.navigationItem.leftBarButtonItem;
 		if (!ORKNeedWideScreenDesign(self.view)) {
-#ifndef THEMING_ENABLED
 			_pageViewController.navigationItem.title = viewController.navigationItem.title;
 			_pageViewController.navigationItem.titleView = viewController.navigationItem.titleView;
+#ifndef THEMING_ENABLED
 			CGFloat maxWidth = UIScreen.mainScreen.bounds.size.width - 40;
 			CGFloat fontSize = [UIFont preferredFontForTextStyle:UIFontTextStyleLargeTitle].pointSize;
 			CGFloat width = [_pageViewController.navigationItem.title sizeWithAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontSize]}].width;
