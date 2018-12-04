@@ -361,8 +361,10 @@ static NSString *const _ChildNavigationControllerRestorationKey = @"childNavigat
     _managedStepIdentifiers = [NSMutableArray array];
     
     self.taskRunUUID = taskRunUUID;
-    
+	
+	if (!ORKTaskViewController.disableNavigationBarUpdates) {
     [self.childNavigationController.navigationBar setShadowImage:[UIImage new]];
+	}
     self.hairline = [self findHairlineViewUnder:self.childNavigationController.navigationBar];
     self.hairline.alpha = 0.0f;
     self.childNavigationController.toolbar.clipsToBounds = YES;

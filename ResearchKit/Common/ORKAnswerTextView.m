@@ -34,6 +34,7 @@
 
 #import "ORKHelpers_Internal.h"
 #import "ORKSkin.h"
+#import "ORKTaskViewController.h"
 
 
 @implementation ORKAnswerTextView {

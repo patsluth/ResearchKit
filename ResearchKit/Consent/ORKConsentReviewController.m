@@ -38,6 +38,7 @@
 
 #import "ORKHelpers_Internal.h"
 #import "ORKSkin.h"
+#import "ORKTaskViewController.h"
 
 
 static const CGFloat iPadStepTitleLabelFontSize = 50.0;
@@ -87,7 +88,9 @@ static const CGFloat iPadStepTitleLabelFontSize = 50.0;
     self.view.backgroundColor = ORKColor(ORKConsentBackgroundColorKey);
 	if (!ORKTaskViewController.disableNavigationBarUpdates) {
     if (self.navigationController.navigationBar) {
+		if (!ORKTaskViewController.disableNavigationBarUpdates) {
         [self.navigationController.navigationBar setBarTintColor:self.view.backgroundColor];
+		}
     }
 	}
     

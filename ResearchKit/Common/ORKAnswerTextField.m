@@ -33,6 +33,7 @@
 #import "ORKSkin.h"
 
 #import "ORKAccessibility.h"
+#import "ORKTaskViewController.h"
 
 
 @implementation ORKAnswerTextField

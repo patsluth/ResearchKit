@@ -233,8 +233,10 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
 				_cellHolderView.answer = [self answer];
 				_cellHolderView.userInteractionEnabled = !self.readOnlyMode;
 				if (self.questionStep.useCardView) {
+					if (!ORKTaskViewController.disableNavigationBarUpdates) {
 					[_questionView setBackgroundColor:ORKColor(ORKBackgroundColorKey)];
 					[self.taskViewController.navigationBar setBarTintColor:[_questionView backgroundColor]];
+					}
 					[self.view setBackgroundColor:[_questionView backgroundColor]];
 					[_cellHolderView useCardViewWithTitle:self.questionStep.question];
 				}

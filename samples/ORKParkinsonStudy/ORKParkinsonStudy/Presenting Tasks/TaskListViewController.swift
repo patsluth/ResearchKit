@@ -65,7 +65,9 @@ class TaskListViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+		if (!ORKTaskViewController.disableNavigationBarUpdates) {
         self.view.backgroundColor = Colors.appTintColor.color
+		}
     }
     
     func setupTableView() {
@@ -77,7 +79,9 @@ class TaskListViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100.0
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = Colors.tableViewBackgroundColor.color
+		if (!ORKTaskViewController.disableNavigationBarUpdates) {
+			tableView.backgroundColor = Colors.tableViewBackgroundColor.color
+		}
         view.addSubview(tableView)
     }
     

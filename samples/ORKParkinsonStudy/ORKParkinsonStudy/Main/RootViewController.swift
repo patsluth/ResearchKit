@@ -57,11 +57,13 @@ class RootViewController: UIViewController, OnboardingManagerDelegate {
         
         let taskListViewController = TaskListViewController()
         let taskListNavController = UINavigationController(rootViewController: taskListViewController)
+		if (!ORKTaskViewController.disableNavigationBarUpdates) {
         taskListNavController.navigationBar.shadowImage = UIImage()
         taskListNavController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+			taskListNavController.navigationBar.titleTextAttributes = textAttributes
+		}
         taskListNavController.tabBarItem.title = NSLocalizedString("Tasks", comment: "")
         taskListNavController.tabBarItem.image = UIImage.init(named: "surveyTab")
-        taskListNavController.navigationBar.titleTextAttributes = textAttributes
         
         let graphViewController = GraphViewController.init(style: .grouped)
         graphViewController.title = "Graphs"
@@ -74,13 +76,17 @@ class RootViewController: UIViewController, OnboardingManagerDelegate {
 		}
         graphNavigationController.tabBarItem.title = NSLocalizedString("Graphs", comment: "")
         graphNavigationController.tabBarItem.image = UIImage.init(named: "graphTab")
+		if (!ORKTaskViewController.disableNavigationBarUpdates) {
         graphNavigationController.navigationBar.titleTextAttributes = textAttributes
         graphNavigationController.navigationBar.largeTitleTextAttributes = textAttributes
+		}
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [taskListNavController, graphNavigationController]
+		if (!ORKTaskViewController.disableNavigationBarUpdates) {
         tabBarController.tabBar.barTintColor = Colors.tableViewCellBackgroundColor.color
         tabBarController.tabBar.tintColor = Colors.dyskinesiaSymptomGraphColor.color
+		}
         self.present(tabBarController, animated: true, completion: nil)
     }
 }

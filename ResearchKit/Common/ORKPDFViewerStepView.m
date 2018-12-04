@@ -34,6 +34,7 @@
 #import "ORKHelpers_Internal.h"
 #import "ORKBorderedButton.h"
 #import "ORKSkin.h"
+#import "ORKTaskViewController.h"
 
 const CGFloat PDFSearchBarHeight = 40.0;
 const CGFloat PDFActionViewHeight = 25.0;

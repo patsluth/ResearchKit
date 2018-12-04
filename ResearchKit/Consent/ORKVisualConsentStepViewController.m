@@ -290,7 +290,9 @@
 	
 	if (!ORKTaskViewController.disableNavigationBarUpdates) {
     if (self.taskViewController.navigationBar) {
+		if (!ORKTaskViewController.disableNavigationBarUpdates) {
         [self.taskViewController.navigationBar setBarTintColor:self.view.backgroundColor];
+		}
     }
 	}
 	
