@@ -53,9 +53,11 @@
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController {
     self = [super initWithRootViewController:rootViewController];
     if (self) {
+#ifndef THEMING_ENABLED
         [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
         self.navigationBar.shadowImage = [UIImage new];
         self.navigationBar.translucent = NO;
+#endif
     }
     return self;
 }
