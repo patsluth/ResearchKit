@@ -119,4 +119,6 @@
 
 #import <ResearchKit/ORKDeprecated.h>
 
+#import <ResearchKit/ORKStepHeaderView.h>
+#import <ResearchKit/ORKStepHeaderView_Internal.h>
 #import <ResearchKit/ORKLabel.h>
