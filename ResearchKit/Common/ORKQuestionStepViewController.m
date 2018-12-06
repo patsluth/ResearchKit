@@ -181,11 +181,11 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
 			_headerView.captionLabel.useSurveyMode = self.step.useSurveyMode;
 			if (self.questionStep.useCardView) {
 				_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+#ifndef THEMING_ENABLED
 				[_tableView setBackgroundColor:ORKColor(ORKBackgroundColorKey)];
-				#ifndef THEMING_ENABLED
-					[self.taskViewController.navigationBar setBarTintColor:[_tableView backgroundColor]];
-				#endif
+				[self.taskViewController.navigationBar setBarTintColor:[_tableView backgroundColor]];
 				[self.view setBackgroundColor:[_tableView backgroundColor]];
+#endif
 			}
 			else {
 				_headerView.captionLabel.text = self.questionStep.question;
@@ -233,11 +233,11 @@ typedef NS_ENUM(NSInteger, ORKQuestionSection) {
 				_cellHolderView.answer = [self answer];
 				_cellHolderView.userInteractionEnabled = !self.readOnlyMode;
 				if (self.questionStep.useCardView) {
+#ifndef THEMING_ENABLED
 					[_questionView setBackgroundColor:ORKColor(ORKBackgroundColorKey)];
-					#ifndef THEMING_ENABLED
 					[self.taskViewController.navigationBar setBarTintColor:[_questionView backgroundColor]];
-					#endif
 					[self.view setBackgroundColor:[_questionView backgroundColor]];
+#endif
 					[_cellHolderView useCardViewWithTitle:self.questionStep.question];
 				}
 				_questionView.questionCustomView = _cellHolderView;

@@ -72,7 +72,9 @@ static const CGFloat CellBottomPadding = 20.0;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         
         _tableView = [[UITableView alloc] initWithFrame:self.bounds style:style];
+#ifndef THEMING_ENABLED
         _tableView.backgroundColor = ORKColor(ORKBackgroundColorKey);
+#endif
         _tableView.allowsSelection = YES;
         _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
         _tableView.preservesSuperviewLayoutMargins = YES;

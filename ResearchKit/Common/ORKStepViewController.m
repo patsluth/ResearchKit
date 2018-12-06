@@ -109,10 +109,10 @@ static const CGFloat iPadStepTitleLabelFontSize = 50.0;
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
+#ifndef THEMING_ENABLED
 	self.view.backgroundColor = ORKColor(ORKBackgroundColorKey);
-	#ifndef THEMING_ENABLED
-		[self.taskViewController.navigationBar setBarTintColor:[self.view backgroundColor]];
-	#endif
+	[self.taskViewController.navigationBar setBarTintColor:[self.view backgroundColor]];
+#endif
 	if ([self step].title) {
 		self.title = [self step].title;
 	} else {
